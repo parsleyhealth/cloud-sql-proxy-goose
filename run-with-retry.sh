@@ -14,3 +14,8 @@ until [[ $CURRENT_TRY -eq $CONN_RETRIES ]] || eval $GOOSE_COMMAND; do
     sleep 1
     ((CURRENT_TRY++))
 done
+
+# If we hit the max ammount of attempts exit with 1
+if [[ $CURRENT_TRY -eq $CONN_RETRIES ]]; then
+    exit 1
+fi

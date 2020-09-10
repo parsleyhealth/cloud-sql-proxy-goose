@@ -37,7 +37,7 @@ Directory holding migrations relative to repository root.
 ## Example usage
 
 ```yaml
-uses: parsleyhealth/cloud-sql-proxy-goose@v1
+uses: parsleyhealth/cloud-sql-proxy-goose@v2
 with:
   goose-command: postgres "user=${{ env.DB_USER }} password=${{ env.DB_PASSWORD }} dbname=${{ env.DB_NAME }} port=1234 sslmode=disable host=localhost" up
   retries: '10'
