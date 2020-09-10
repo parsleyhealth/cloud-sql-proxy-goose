@@ -1,0 +1,29 @@
+# action.yml
+name: 'CloudSQL Proxy Goose'
+description: 'Runs a Goose Command with Retry against a Cloud SQL Proxy Connection'
+inputs:
+  goose-command:  # id of input
+    description: 'Full goose command to run'
+    required: true
+  retries:
+    description: 'Number of times to retry command'
+    required: false
+    default: '10'
+  migrations-dir:
+    description: 'Location of migration files relative from repository root'
+    required: false
+    default: ''
+  gcp-credential-json:
+    description: 'Contents of GCP Credential JSON file'
+    required: true
+  cloud-sql-instance:
+    description: 'Command delimited list of instances. The form gcp_project:region:instance=tcp:port'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    CONN_RETRIES: ${{ inputs.retries }}
+    COMMAND: -dir $GITHUB_WORKSPACE${{ inputs.migrations-dir }} ${{ inputs.goose-command }}
+    GCP_CREDENTIAL_JSON: ${{ inputs.gcp-credential-json }}
+    CLOUDSQL_INSTANCE: ${{ inputs.cloud-sql-instance }}
