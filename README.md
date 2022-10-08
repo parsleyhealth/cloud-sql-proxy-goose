@@ -1,5 +1,9 @@
 # cloud-sql-proxy-goose
 
+## Deprecation Notice
+
+Please migrate to use [goose-migration](https://github.com/parsleyhealth/github-composite-actions/tree/main/goose-migration) action.
+
 ## Summary
 
 A GitHub Action that uses a Docker image to create a temporary cloud_sql_proxy connection to a GCP CloudSQL Instance and runs a [goose](https://github.com/pressly/goose) command.
