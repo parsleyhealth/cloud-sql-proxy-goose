@@ -1,6 +1,6 @@
 FROM gcr.io/cloudsql-docker/gce-proxy as cloudsql-proxy
 
-FROM golang:1.16
+FROM golang:1.17
 
 # Copy cloud-proxy binary
 COPY --from=cloudsql-proxy /cloud_sql_proxy /cloud_sql_proxy
